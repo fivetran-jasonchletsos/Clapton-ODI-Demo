@@ -15,6 +15,16 @@ export const WOODY_FACTS = [
   "Nearly thirty years of friendship with JC",
 ];
 
+// A short clip — Woody's son at a Jets game. Lives on the dedication page.
+// 176x144 native (old phone), preserved at small frame so it reads as
+// authentic family video rather than a polished asset.
+export const WOODY_VIDEO = {
+  src: "/video/woody-son-jets.mp4",
+  caption: "Woody's son at a Jets game. The fandom is hereditary.",
+  width: 176,
+  height: 144,
+};
+
 export const WOODY_PHOTOS = [
   {
     src: "/img/woody-portrait.png",

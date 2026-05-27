@@ -1,6 +1,6 @@
 import TopNav from "@/components/TopNav";
 import Footer from "@/components/Footer";
-import { DEDICATION, WOODY_FACTS, WOODY_PHOTOS } from "@/lib/dedication";
+import { DEDICATION, WOODY_FACTS, WOODY_PHOTOS, WOODY_VIDEO } from "@/lib/dedication";
 
 export const metadata = { title: "For Woody · Slowhand" };
 
@@ -69,6 +69,24 @@ export default function DedicationPage() {
             </figure>
           ))}
         </div>
+
+        <hr className="hr-rule" />
+
+        <figure className="border border-paper_3/60 bg-paper_2/60 p-3 rounded inline-block max-w-md">
+          <video
+            src={`${basePath}${WOODY_VIDEO.src}`}
+            controls
+            preload="metadata"
+            playsInline
+            className="block bg-ink rounded"
+            style={{ width: "100%", maxWidth: 360, aspectRatio: `${WOODY_VIDEO.width} / ${WOODY_VIDEO.height}` }}
+          >
+            Your browser does not support the video tag.
+          </video>
+          <figcaption className="mono text-[10px] uppercase tracking-[0.18em] text-slate p-2 pt-3">
+            {WOODY_VIDEO.caption}
+          </figcaption>
+        </figure>
 
         <p className="serif text-ink_2 text-[15px] leading-relaxed mt-10 max-w-3xl">
           Happy listening, brother. Pick the guitar up tonight and play something off Slowhand.
