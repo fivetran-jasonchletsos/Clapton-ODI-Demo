@@ -47,7 +47,16 @@ export default function SheetMusicPage() {
                 <p className="mono text-[10px] uppercase tracking-[0.22em] text-whiskey mt-1">
                   {s.band} &middot; {s.year}
                 </p>
-                <p className="serif text-ink_2 text-[14px] mt-2.5 leading-relaxed">{s.technique}</p>
+                {s.tuning && (
+                  <p className="serif text-ink_2/85 text-[13px] mt-2 leading-relaxed">
+                    <span className="mono text-[10px] uppercase tracking-[0.18em] text-denim mr-2">Tuning</span>
+                    {s.tuning}
+                  </p>
+                )}
+                <p className="serif text-ink_2 text-[14px] mt-2 leading-relaxed">
+                  <span className="mono text-[10px] uppercase tracking-[0.18em] text-denim mr-2">Lesson</span>
+                  {s.technique}
+                </p>
               </div>
 
               <div className="flex flex-col sm:flex-row md:flex-col gap-2 text-sm">

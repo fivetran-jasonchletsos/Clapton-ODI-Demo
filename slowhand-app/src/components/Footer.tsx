@@ -9,7 +9,7 @@ export default function Footer() {
           For {DEDICATION.to}, from {DEDICATION.by} &middot; <Link href="/dedication" className="text-whiskey hover:underline">read the dedication</Link>
         </p>
         <p className="mono text-[10px] uppercase tracking-[0.18em] text-slate">
-          Slowhand &middot; Made with care
+          A side project, built for one specific guitar player.
         </p>
       </div>
     </footer>
