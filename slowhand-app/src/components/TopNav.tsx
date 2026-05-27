@@ -1,9 +1,10 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-const LINKS = [
+// Primary nav — the entry points Woody opens most.
+const PRIMARY = [
   { href: "/",            label: "Home" },
   { href: "/bands",       label: "Bands" },
   { href: "/discography", label: "Discography" },
@@ -13,162 +14,131 @@ const LINKS = [
   { href: "/dedication",  label: "For Woody" },
 ];
 
-// Secondary "More" menu — pages that exist but don't earn a permanent slot.
-const MORE_LINKS = [
+// Secondary nav — context pages. Same visibility, smaller weight.
+const SECONDARY = [
   { href: "/collaborators",  label: "Collaborators" },
   { href: "/influences",     label: "Influences" },
   { href: "/timeline",       label: "Timeline" },
   { href: "/dark-chapters",  label: "Difficult Chapters" },
 ];
 
+const ALL_LINKS = [...PRIMARY, ...SECONDARY];
+
+function NavLinkItem({
+  href,
+  label,
+  pathname,
+  variant,
+  onClick,
+}: {
+  href: string;
+  label: string;
+  pathname: string | null;
+  variant: "primary" | "secondary" | "mobile";
+  onClick?: () => void;
+}) {
+  const active =
+    href === "/"
+      ? pathname === "/"
+      : pathname?.startsWith(href);
+
+  const base = "rounded mono uppercase transition-colors";
+  const sizing = {
+    primary: "px-3 py-1.5 text-[11px] tracking-[0.16em]",
+    secondary: "px-2.5 py-1 text-[10px] tracking-[0.18em]",
+    mobile: "block px-3 py-3 text-[12px] tracking-[0.16em]",
+  }[variant];
+
+  const activeCls = "text-ink bg-paper_2";
+  const idleCls =
+    variant === "secondary"
+      ? "text-ash hover:text-ink hover:bg-paper_2/60"
+      : "text-slate hover:text-ink hover:bg-paper_2/60";
+
+  return (
+    <Link href={href} onClick={onClick} className={`${base} ${sizing} ${active ? activeCls : idleCls}`}>
+      {label}
+    </Link>
+  );
+}
+
 export default function TopNav() {
   const pathname = usePathname();
-  const [openMore, setOpenMore] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const moreRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!openMore) return;
-    const onDocClick = (e: MouseEvent) => {
-      if (moreRef.current && !moreRef.current.contains(e.target as Node)) {
-        setOpenMore(false);
-      }
-    };
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpenMore(false);
-    };
-    document.addEventListener("mousedown", onDocClick);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("mousedown", onDocClick);
-      document.removeEventListener("keydown", onKey);
-    };
-  }, [openMore]);
+  useEffect(() => { setMobileOpen(false); }, [pathname]);
 
-  // Close More menu + mobile drawer on route change
-  useEffect(() => {
-    setOpenMore(false);
-    setMobileOpen(false);
-  }, [pathname]);
-
-  // Body scroll lock while mobile drawer is open
   useEffect(() => {
     if (!mobileOpen) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
+    return () => { document.body.style.overflow = prev; };
   }, [mobileOpen]);
-
-  const moreActive = MORE_LINKS.some((l) => pathname?.startsWith(l.href));
-  const allLinks = [...LINKS, ...MORE_LINKS];
 
   return (
     <header className="sticky top-0 z-30 border-b border-paper_3/60 bg-paper/90 backdrop-blur-md">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 py-3 flex items-center gap-6">
-        <Link href="/" className="flex items-baseline gap-2.5 group" onClick={() => setMobileOpen(false)}>
-          <span className="display text-ink text-2xl tracking-tight">
-            SLOWHAND
-          </span>
-          <span className="hidden sm:inline mono text-[10px] tracking-[0.22em] text-whiskey uppercase">
-            A tribute to Eric Clapton
-          </span>
-        </Link>
+      <div className="max-w-6xl mx-auto px-5 sm:px-8">
+        {/* Row 1: logo + primary nav (desktop) + hamburger (mobile) */}
+        <div className="flex items-center gap-6 py-3">
+          <Link
+            href="/"
+            className="flex items-baseline gap-2.5 group"
+            onClick={() => setMobileOpen(false)}
+          >
+            <span className="display text-ink text-2xl tracking-tight">SLOWHAND</span>
+            <span className="hidden sm:inline mono text-[10px] tracking-[0.22em] text-whiskey uppercase">
+              A tribute to Eric Clapton
+            </span>
+          </Link>
 
-        {/* Desktop nav */}
-        <nav className="ml-auto hidden md:flex items-center gap-1 text-sm">
-          {LINKS.map((l) => {
-            const active =
-              l.href === "/"
-                ? pathname === "/"
-                : pathname?.startsWith(l.href);
-            return (
-              <Link
+          <nav className="ml-auto hidden md:flex items-center gap-0.5">
+            {PRIMARY.map((l) => (
+              <NavLinkItem
                 key={l.href}
                 href={l.href}
-                className={`px-3 py-1.5 rounded mono text-[11px] uppercase tracking-[0.16em] transition-colors ${
-                  active
-                    ? "text-ink bg-paper_2"
-                    : "text-slate hover:text-ink hover:bg-paper_2/60"
-                }`}
-              >
-                {l.label}
-              </Link>
-            );
-          })}
+                label={l.label}
+                pathname={pathname}
+                variant="primary"
+              />
+            ))}
+          </nav>
 
-          <div ref={moreRef} className="relative">
-            <button
-              type="button"
-              onClick={() => setOpenMore((v) => !v)}
-              aria-haspopup="menu"
-              aria-expanded={openMore}
-              className={`px-3 py-1.5 rounded mono text-[11px] uppercase tracking-[0.16em] transition-colors inline-flex items-center gap-1.5 ${
-                openMore || moreActive
-                  ? "text-ink bg-paper_2"
-                  : "text-slate hover:text-ink hover:bg-paper_2/60"
-              }`}
-            >
-              More
-              <span
-                aria-hidden
-                className={`inline-block text-[8px] leading-none transition-transform ${
-                  openMore ? "rotate-180" : ""
-                }`}
-              >
-                &#9660;
-              </span>
-            </button>
-            {openMore && (
-              <div
-                role="menu"
-                className="absolute right-0 mt-2 min-w-[180px] border border-paper_3/60 bg-paper shadow-lg rounded overflow-hidden"
-              >
-                {MORE_LINKS.map((l) => {
-                  const active = pathname?.startsWith(l.href);
-                  return (
-                    <Link
-                      key={l.href}
-                      role="menuitem"
-                      href={l.href}
-                      className={`block px-4 py-2 mono text-[11px] uppercase tracking-[0.16em] transition-colors ${
-                        active
-                          ? "text-ink bg-paper_2"
-                          : "text-slate hover:text-ink hover:bg-paper_2/60"
-                      }`}
-                    >
-                      {l.label}
-                    </Link>
-                  );
-                })}
-              </div>
+          <button
+            type="button"
+            className="md:hidden ml-auto inline-flex items-center justify-center w-10 h-10 rounded text-slate hover:text-ink focus:outline-none focus:ring-1 focus:ring-whiskey/40"
+            aria-controls="mobile-nav"
+            aria-expanded={mobileOpen}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            onClick={() => setMobileOpen((v) => !v)}
+          >
+            {mobileOpen ? (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M18 6L6 18M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M3 6h18M3 12h18M3 18h18" />
+              </svg>
             )}
-          </div>
-        </nav>
+          </button>
+        </div>
 
-        {/* Mobile hamburger */}
-        <button
-          type="button"
-          className="md:hidden ml-auto inline-flex items-center justify-center w-10 h-10 rounded text-slate hover:text-ink focus:outline-none focus:ring-1 focus:ring-whiskey/40"
-          aria-controls="mobile-nav"
-          aria-expanded={mobileOpen}
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          onClick={() => setMobileOpen((v) => !v)}
-        >
-          {mobileOpen ? (
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M18 6L6 18M6 6l12 12" />
-            </svg>
-          ) : (
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M3 6h18M3 12h18M3 18h18" />
-            </svg>
-          )}
-        </button>
+        {/* Row 2: secondary nav (desktop only) — same visibility, smaller weight */}
+        <nav className="hidden md:flex items-center gap-0.5 pb-2 -mt-1 justify-end border-t border-paper_3/30 pt-2">
+          <span className="mr-auto mono text-[9px] tracking-[0.24em] uppercase text-ash">More on Clapton</span>
+          {SECONDARY.map((l) => (
+            <NavLinkItem
+              key={l.href}
+              href={l.href}
+              label={l.label}
+              pathname={pathname}
+              variant="secondary"
+            />
+          ))}
+        </nav>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer — shows all 11 links flat */}
       {mobileOpen && (
         <>
           <div
@@ -181,27 +151,17 @@ export default function TopNav() {
             className="md:hidden relative z-20 border-t border-paper_3/60 bg-paper"
           >
             <ul className="max-w-6xl mx-auto px-5 py-2 flex flex-col">
-              {allLinks.map((l) => {
-                const active =
-                  l.href === "/"
-                    ? pathname === "/"
-                    : pathname?.startsWith(l.href);
-                return (
-                  <li key={l.href}>
-                    <Link
-                      href={l.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={`block px-3 py-3 rounded mono text-[12px] uppercase tracking-[0.16em] transition-colors ${
-                        active
-                          ? "text-ink bg-paper_2"
-                          : "text-slate hover:text-ink hover:bg-paper_2/60"
-                      }`}
-                    >
-                      {l.label}
-                    </Link>
-                  </li>
-                );
-              })}
+              {ALL_LINKS.map((l) => (
+                <li key={l.href}>
+                  <NavLinkItem
+                    href={l.href}
+                    label={l.label}
+                    pathname={pathname}
+                    variant="mobile"
+                    onClick={() => setMobileOpen(false)}
+                  />
+                </li>
+              ))}
             </ul>
           </nav>
         </>
