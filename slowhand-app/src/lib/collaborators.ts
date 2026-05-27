@@ -1,0 +1,118 @@
+// Musicians Eric Clapton has played, recorded, or toured with. Not exhaustive —
+// curated for the people who shaped the records or whose records he shaped.
+
+export type Collaborator = {
+  slug: string;
+  name: string;
+  instrument: string;
+  context: string;       // 1-2 sentences — what they did together
+  era: string;
+};
+
+export const COLLABORATORS: Collaborator[] = [
+  // Cream / Yardbirds peers
+  { slug: "jack-bruce", name: "Jack Bruce", instrument: "Bass / vocals / songwriting",
+    context: "Cream's voice and primary writer. Co-wrote 'Sunshine of Your Love' and 'White Room' with Pete Brown.",
+    era: "1966–1968" },
+  { slug: "ginger-baker", name: "Ginger Baker", instrument: "Drums",
+    context: "Cream's drummer; later reunited in Blind Faith. Volatile relationship, undisputed innovation.",
+    era: "1966–1969" },
+  { slug: "jeff-beck", name: "Jeff Beck", instrument: "Guitar",
+    context: "Replaced Clapton in the Yardbirds. Two of the three Yardbirds guitarists were Beck and Page.",
+    era: "1965" },
+  { slug: "jimmy-page", name: "Jimmy Page", instrument: "Guitar",
+    context: "Third Yardbirds guitarist; would form Led Zeppelin. Played sessions together in the late 60s.",
+    era: "1966–1968" },
+
+  // Blind Faith / sideman era
+  { slug: "steve-winwood", name: "Steve Winwood", instrument: "Vocals / keys / guitar",
+    context: "Blind Faith co-founder. Later live partner — the 2008 Madison Square Garden run is canonical.",
+    era: "1969, 2008" },
+  { slug: "ric-grech", name: "Ric Grech", instrument: "Bass",
+    context: "Blind Faith bassist, ex-Family. Quiet anchor of the supergroup.",
+    era: "1969" },
+
+  // Delaney & Bonnie / Dominos
+  { slug: "delaney-bramlett", name: "Delaney Bramlett", instrument: "Guitar / vocals / coaching",
+    context: "Coached Clapton to sing. Without him there's no 'Tears in Heaven' or any solo records.",
+    era: "1969–1970" },
+  { slug: "bonnie-bramlett", name: "Bonnie Bramlett", instrument: "Vocals",
+    context: "Delaney's wife and co-vocalist. Soul belter who toured with the Dominos founding rhythm section.",
+    era: "1969–1970" },
+  { slug: "bobby-whitlock", name: "Bobby Whitlock", instrument: "Keys / vocals / songwriting",
+    context: "Dominos co-founder. Co-wrote 'Bell Bottom Blues', 'Why Does Love Got to Be So Sad?', 'Anyday'.",
+    era: "1970–1971" },
+  { slug: "carl-radle", name: "Carl Radle", instrument: "Bass",
+    context: "Dominos bassist; continued into Clapton's solo bands through the 1970s.",
+    era: "1970–1979" },
+  { slug: "jim-gordon", name: "Jim Gordon", instrument: "Drums",
+    context: "Dominos drummer. Co-wrote (controversially) the piano coda to 'Layla'.",
+    era: "1970–1971" },
+  { slug: "duane-allman", name: "Duane Allman", instrument: "Slide guitar",
+    context: "Walked into the Layla sessions, transformed the record. Killed in a motorcycle crash 13 months later.",
+    era: "1970" },
+
+  // Solo era anchors
+  { slug: "nathan-east", name: "Nathan East", instrument: "Bass",
+    context: "Decades-long touring bassist and Bridge to East-West Connection. The face you see at every Clapton show.",
+    era: "1986–present" },
+  { slug: "steve-gadd", name: "Steve Gadd", instrument: "Drums",
+    context: "Long-tenure touring drummer; jazz-pedigree precision underneath the blues.",
+    era: "2001–present" },
+  { slug: "andy-fairweather-low", name: "Andy Fairweather Low", instrument: "Guitar / vocals",
+    context: "Long-running second guitarist; ex-Amen Corner.",
+    era: "1980s–present" },
+  { slug: "albert-lee", name: "Albert Lee", instrument: "Guitar",
+    context: "Country-shred specialist. On the Just One Night live record and many solo dates.",
+    era: "1978–1980s" },
+  { slug: "marcy-levy", name: "Marcy Levy (Marcella Detroit)", instrument: "Vocals / songwriting",
+    context: "Co-wrote 'Lay Down Sally'. Backing vocals across the late 70s.",
+    era: "1974–1980" },
+  { slug: "yvonne-elliman", name: "Yvonne Elliman", instrument: "Vocals",
+    context: "Backing vocals on 461 Ocean Boulevard and Slowhand-era tours.",
+    era: "1974–1978" },
+  { slug: "doyle-bramhall-ii", name: "Doyle Bramhall II", instrument: "Guitar / vocals",
+    context: "Modern co-lead guitarist. Plays right-handed-strung lefty; signature soulful tone.",
+    era: "2004–present" },
+
+  // Friends and one-offs
+  { slug: "george-harrison", name: "George Harrison", instrument: "Guitar / vocals / friendship",
+    context: "Married to Pattie Boyd before Clapton did. Played on each other's records anyway. Co-wrote 'Badge'.",
+    era: "1968–2001" },
+  { slug: "bob-dylan", name: "Bob Dylan", instrument: "Vocals / harmonica / writing",
+    context: "Sat in on No Reason to Cry. 'Sign Language' duet. Sessions you wish you'd been in the room for.",
+    era: "1976" },
+  { slug: "phil-collins", name: "Phil Collins", instrument: "Drums / production",
+    context: "Produced Behind the Sun and August. Drummed on Live Aid set.",
+    era: "1985–1988" },
+  { slug: "jj-cale", name: "J.J. Cale", instrument: "Guitar / vocals / songwriting",
+    context: "Wrote 'After Midnight' and 'Cocaine'. The Road to Escondido is their 2006 duet album.",
+    era: "1970–2013" },
+  { slug: "bb-king", name: "B.B. King", instrument: "Guitar / vocals",
+    context: "Riding with the King — their 2000 duet record. Two generations of blues guitar.",
+    era: "2000" },
+  { slug: "buddy-guy", name: "Buddy Guy", instrument: "Guitar / vocals",
+    context: "Chicago blues royalty. Featured at Crossroads Guitar Festivals; mutual influence.",
+    era: "1990s–present" },
+  { slug: "stevie-ray-vaughan", name: "Stevie Ray Vaughan", instrument: "Guitar",
+    context: "Touring with Clapton's band in 1990. Killed in the helicopter crash leaving the Alpine Valley show.",
+    era: "1990" },
+  { slug: "robbie-robertson", name: "Robbie Robertson", instrument: "Guitar / writing",
+    context: "Played on No Reason to Cry at Shangri-La with The Band.",
+    era: "1976" },
+  { slug: "ringo-starr", name: "Ringo Starr", instrument: "Drums",
+    context: "Concert for Bangladesh; Rainbow Concert; multiple sessions across decades.",
+    era: "1971–present" },
+  { slug: "mark-knopfler", name: "Mark Knopfler", instrument: "Guitar",
+    context: "Cowriting and live runs in the 1990s. Two of the most economical-melodic British guitarists on one stage.",
+    era: "1988–1990s" },
+  { slug: "sting", name: "Sting", instrument: "Vocals / bass",
+    context: "Live aid and various charity events. Mutual respect across decades.",
+    era: "1985–present" },
+  { slug: "john-mayer", name: "John Mayer", instrument: "Guitar / vocals",
+    context: "Crossroads Festival regular. Studied at the Clapton/SRV altar.",
+    era: "2000s–present" },
+  { slug: "joe-bonamassa", name: "Joe Bonamassa", instrument: "Guitar",
+    context: "Opened for Clapton at age 12. Now the inheritor of the British blues-rock guitar tradition.",
+    era: "1989–present" },
+];
