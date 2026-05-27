@@ -6,6 +6,15 @@ export const DEDICATION = {
     "Woody picks up a guitar the way some people pick up a beer — casually, often, and to make the room better. This is a tribute to the guitarist he's been listening to the longest. Bands he played in, records he made, people he made them with, and the sheet music for the songs Woody is probably already learning.",
 };
 
+// Small personal-facts strip that lives below the dedication message.
+// Keep it short — these are the things Woody friends recognize at first glance.
+export const WOODY_FACTS = [
+  "Guitar in hand most evenings",
+  "Diehard New York Jets fan",
+  "Dad — the wagon-pulling kind",
+  "Nearly thirty years of friendship with JC",
+];
+
 export const WOODY_PHOTOS = [
   {
     src: "/img/woody-portrait.png",
