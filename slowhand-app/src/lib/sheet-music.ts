@@ -80,4 +80,20 @@ export const SONGS: Song[] = [
   { slug: "running-on-faith", title: "Running on Faith", band: "Eric Clapton (Journeyman)", year: 1989,
     difficulty: "Intermediate", technique: "Open-G blues. The Unplugged version is the one to study — Andy Fairweather Low on second guitar.",
     songsterr: songsterr("Running on Faith"), ultimateGuitar: ug("Running on Faith") },
+
+  { slug: "old-love", title: "Old Love", band: "Eric Clapton (Journeyman)", year: 1989,
+    difficulty: "Advanced", technique: "Slow A minor blues co-written with Robert Cray. The lesson is dynamics and phrasing across long solo space — every note has to mean something.",
+    songsterr: songsterr("Old Love"), ultimateGuitar: ug("Old Love") },
+
+  { slug: "have-you-ever-loved-a-woman", title: "Have You Ever Loved a Woman", band: "Derek and the Dominos", year: 1970,
+    difficulty: "Advanced", technique: "Freddie King-rooted slow blues in C. The vocabulary lesson — minor pentatonic with major-3rd passing tones, behind-the-beat phrasing.",
+    songsterr: songsterr("Have You Ever Loved a Woman"), ultimateGuitar: ug("Have You Ever Loved a Woman") },
+
+  { slug: "travelin-alone", title: "Travelin' Alone", band: "Eric Clapton (Clapton, 2010)", year: 2010,
+    difficulty: "Intermediate", technique: "Shuffle in E with Doyle Bramhall II on the second guitar part. Pocket study: keep the shuffle eighth-note feel under the lead.",
+    songsterr: songsterr("Travelin Alone"), ultimateGuitar: ug("Travelin Alone") },
+
+  { slug: "riding-with-the-king", title: "Riding with the King", band: "Eric Clapton & B.B. King", year: 2000,
+    difficulty: "Intermediate", technique: "John Hiatt's song reframed as a blues duet. The lesson is call-and-response — leave room for the other guitar to answer.",
+    songsterr: songsterr("Riding with the King"), ultimateGuitar: ug("Riding with the King") },
 ];

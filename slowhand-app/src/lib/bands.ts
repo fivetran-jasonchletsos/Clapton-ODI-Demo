@@ -11,6 +11,7 @@ export type Band = {
   members: string[];     // other core members
   iconicSongs?: string[];
   signatureGear?: string;
+  keyMoments?: string[];
 };
 
 export const BANDS: Band[] = [
@@ -24,6 +25,11 @@ export const BANDS: Band[] = [
     members: ["Keith Relf", "Chris Dreja", "Paul Samwell-Smith", "Jim McCarty"],
     iconicSongs: ["I'm a Man", "Got to Hurry", "Smokestack Lightning (live)"],
     signatureGear: "1964 Fender Telecaster",
+    keyMoments: [
+      "Replaced Top Topham as lead guitarist in October 1963",
+      "Backed Sonny Boy Williamson II on the 1965 live LP",
+      "Walked out in March 1965 over the pop direction of 'For Your Love'",
+    ],
   },
   {
     slug: "bluesbreakers",
@@ -35,6 +41,11 @@ export const BANDS: Band[] = [
     members: ["John Mayall", "John McVie", "Hughie Flint"],
     iconicSongs: ["All Your Love", "Hideaway", "Have You Heard"],
     signatureGear: "1960 Gibson Les Paul Standard into a Marshall JTM45",
+    keyMoments: [
+      "Joined April 1965 after quitting the Yardbirds",
+      "Recorded the Beano album in three days at Decca Studios, spring 1966",
+      "Left in July 1966 to form Cream with Jack Bruce and Ginger Baker",
+    ],
   },
   {
     slug: "cream",
@@ -46,6 +57,11 @@ export const BANDS: Band[] = [
     members: ["Jack Bruce", "Ginger Baker"],
     iconicSongs: ["Sunshine of Your Love", "White Room", "Crossroads", "Badge", "Tales of Brave Ulysses"],
     signatureGear: "Gibson SG 'The Fool' painted by The Fool collective",
+    keyMoments: [
+      "Debut at the 1966 Windsor Jazz & Blues Festival, July 1966",
+      "Farewell concerts at the Royal Albert Hall, 26 November 1968",
+      "Reunion shows at the Royal Albert Hall, May 2005",
+    ],
   },
   {
     slug: "blind-faith",
@@ -57,6 +73,11 @@ export const BANDS: Band[] = [
     members: ["Steve Winwood", "Ginger Baker", "Ric Grech"],
     iconicSongs: ["Can't Find My Way Home", "Presence of the Lord", "Sea of Joy"],
     signatureGear: "1956 Fender Stratocaster (Brownie)",
+    keyMoments: [
+      "Free debut concert in Hyde Park, 7 June 1969, drew an estimated 100,000",
+      "Self-titled LP topped both UK and US charts in August 1969",
+      "Disbanded after the US tour in August 1969; Clapton joined the opening act, Delaney & Bonnie",
+    ],
   },
   {
     slug: "delaney-and-bonnie",
@@ -66,8 +87,13 @@ export const BANDS: Band[] = [
     blurb:
       "Clapton joined the touring band as a sideman to disappear into someone else's group. He learned how to sing under Delaney Bramlett's coaching — directly responsible for him fronting his own bands after.",
     members: ["Delaney Bramlett", "Bonnie Bramlett", "Bobby Whitlock", "Carl Radle", "Jim Gordon"],
-    iconicSongs: ["Comin' Home", "Coming Home"],
+    iconicSongs: ["Comin' Home", "Poor Elijah / Tribute to Johnson", "Things Get Better"],
     signatureGear: "Fender Stratocaster",
+    keyMoments: [
+      "Joined the touring band on the December 1969 UK tour with George Harrison also in the lineup",
+      "On Tour with Eric Clapton recorded live at Croydon and Bristol, December 1969",
+      "Most of the band followed Clapton out to form Derek and the Dominos in 1970",
+    ],
   },
   {
     slug: "derek-and-the-dominos",
@@ -79,6 +105,11 @@ export const BANDS: Band[] = [
     members: ["Bobby Whitlock", "Carl Radle", "Jim Gordon", "Duane Allman (sessions)"],
     iconicSongs: ["Layla", "Bell Bottom Blues", "Why Does Love Got to Be So Sad?", "Little Wing"],
     signatureGear: "Fender Stratocaster 'Brownie' (the Layla guitar)",
+    keyMoments: [
+      "Recorded Layla and Other Assorted Love Songs at Criteria Studios, Miami, August–October 1970",
+      "Disintegrated during the abortive second-album sessions in 1971 amid heroin addiction",
+      "Reunited (without Allman or Gordon) for the Rainbow Concert organised by Pete Townshend, 13 January 1973",
+    ],
   },
   {
     slug: "solo",
@@ -90,5 +121,10 @@ export const BANDS: Band[] = [
     members: ["Nathan East", "Steve Gadd", "Andy Fairweather Low", "Albert Lee", "Marcy Levy", "Yvonne Elliman", "Phil Collins", "Doyle Bramhall II"],
     iconicSongs: ["Cocaine", "Wonderful Tonight", "Lay Down Sally", "Tears in Heaven", "Change the World", "Running on Faith"],
     signatureGear: "'Blackie' — composite Stratocaster built from three 1950s bodies",
+    keyMoments: [
+      "MTV Unplugged at Bray Studios, 16 January 1992 — six Grammys, including Album of the Year",
+      "Organised the Concert for George at the Royal Albert Hall, 29 November 2002",
+      "Launched the Crossroads Guitar Festival in Dallas, June 2004, raising funds for Crossroads Centre Antigua",
+    ],
   },
 ];
