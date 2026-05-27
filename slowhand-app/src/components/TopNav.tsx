@@ -4,14 +4,15 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 // Primary nav — the entry points Woody opens most.
+// "For Woody" sits right after Home so the dedication is unmistakable.
 const PRIMARY = [
   { href: "/",            label: "Home" },
+  { href: "/dedication",  label: "For Woody" },
   { href: "/bands",       label: "Bands" },
   { href: "/discography", label: "Discography" },
   { href: "/guitars",     label: "Guitars" },
   { href: "/crossroads",  label: "Crossroads" },
   { href: "/sheet-music", label: "Sheet Music" },
-  { href: "/dedication",  label: "For Woody" },
 ];
 
 // Secondary nav — context pages. Same visibility, smaller weight.
