@@ -15,9 +15,10 @@ const LINKS = [
 
 // Secondary "More" menu — pages that exist but don't earn a permanent slot.
 const MORE_LINKS = [
-  { href: "/collaborators", label: "Collaborators" },
-  { href: "/influences",    label: "Influences" },
-  { href: "/timeline",      label: "Timeline" },
+  { href: "/collaborators",  label: "Collaborators" },
+  { href: "/influences",     label: "Influences" },
+  { href: "/timeline",       label: "Timeline" },
+  { href: "/dark-chapters",  label: "Difficult Chapters" },
 ];
 
 export default function TopNav() {
