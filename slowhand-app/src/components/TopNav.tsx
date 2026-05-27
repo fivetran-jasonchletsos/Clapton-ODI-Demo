@@ -23,6 +23,7 @@ const MORE_LINKS = [
 export default function TopNav() {
   const pathname = usePathname();
   const [openMore, setOpenMore] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const moreRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -43,17 +44,29 @@ export default function TopNav() {
     };
   }, [openMore]);
 
-  // Close More menu on route change
+  // Close More menu + mobile drawer on route change
   useEffect(() => {
     setOpenMore(false);
+    setMobileOpen(false);
   }, [pathname]);
 
+  // Body scroll lock while mobile drawer is open
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [mobileOpen]);
+
   const moreActive = MORE_LINKS.some((l) => pathname?.startsWith(l.href));
+  const allLinks = [...LINKS, ...MORE_LINKS];
 
   return (
     <header className="sticky top-0 z-30 border-b border-paper_3/60 bg-paper/90 backdrop-blur-md">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 py-3 flex items-center gap-6">
-        <Link href="/" className="flex items-baseline gap-2.5 group">
+        <Link href="/" className="flex items-baseline gap-2.5 group" onClick={() => setMobileOpen(false)}>
           <span className="display text-ink text-2xl tracking-tight">
             SLOWHAND
           </span>
@@ -61,6 +74,8 @@ export default function TopNav() {
             A tribute to Eric Clapton
           </span>
         </Link>
+
+        {/* Desktop nav */}
         <nav className="ml-auto hidden md:flex items-center gap-1 text-sm">
           {LINKS.map((l) => {
             const active =
@@ -130,7 +145,66 @@ export default function TopNav() {
             )}
           </div>
         </nav>
+
+        {/* Mobile hamburger */}
+        <button
+          type="button"
+          className="md:hidden ml-auto inline-flex items-center justify-center w-10 h-10 rounded text-slate hover:text-ink focus:outline-none focus:ring-1 focus:ring-whiskey/40"
+          aria-controls="mobile-nav"
+          aria-expanded={mobileOpen}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          onClick={() => setMobileOpen((v) => !v)}
+        >
+          {mobileOpen ? (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M3 6h18M3 12h18M3 18h18" />
+            </svg>
+          )}
+        </button>
       </div>
+
+      {/* Mobile drawer */}
+      {mobileOpen && (
+        <>
+          <div
+            className="md:hidden fixed inset-0 top-[52px] z-10 bg-ink/40 backdrop-blur-sm"
+            aria-hidden="true"
+            onClick={() => setMobileOpen(false)}
+          />
+          <nav
+            id="mobile-nav"
+            className="md:hidden relative z-20 border-t border-paper_3/60 bg-paper"
+          >
+            <ul className="max-w-6xl mx-auto px-5 py-2 flex flex-col">
+              {allLinks.map((l) => {
+                const active =
+                  l.href === "/"
+                    ? pathname === "/"
+                    : pathname?.startsWith(l.href);
+                return (
+                  <li key={l.href}>
+                    <Link
+                      href={l.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={`block px-3 py-3 rounded mono text-[12px] uppercase tracking-[0.16em] transition-colors ${
+                        active
+                          ? "text-ink bg-paper_2"
+                          : "text-slate hover:text-ink hover:bg-paper_2/60"
+                      }`}
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        </>
+      )}
     </header>
   );
 }
