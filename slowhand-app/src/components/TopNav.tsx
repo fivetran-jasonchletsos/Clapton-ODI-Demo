@@ -17,6 +17,7 @@ const PRIMARY = [
 
 // Secondary nav — context pages. Same visibility, smaller weight.
 const SECONDARY = [
+  { href: "/related",        label: "The Web" },
   { href: "/collaborators",  label: "Collaborators" },
   { href: "/influences",     label: "Influences" },
   { href: "/timeline",       label: "Timeline" },
