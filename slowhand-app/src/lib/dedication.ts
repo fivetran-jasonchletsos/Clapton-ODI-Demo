@@ -3,7 +3,7 @@ export const DEDICATION = {
   by: "Jason Chletsos",
   relationship: "Friend of nearly thirty years",
   message:
-    "For a friend who was with me in New Brunswick, Nutley, Summit, and NYC. A lot of great times. This is a tribute to the guitarist he's been listening to the longest — bands he played in, records he made, people he made them with, and the sheet music for the songs he's probably already learning.",
+    "For a friend who was with me in New Brunswick, Nutley, Summit, and NYC. A lot of great times. This is a tribute to the guitarist he's been listening to the longest — late nights on the couch in the basement jamming while I listened. Here is a history of your hero and even the Sheet Music so you keep on jamming.",
 };
 
 // Small personal-facts strip that lives below the dedication message.

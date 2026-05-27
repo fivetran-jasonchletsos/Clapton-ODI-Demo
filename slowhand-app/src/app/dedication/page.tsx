@@ -41,9 +41,6 @@ export default function DedicationPage() {
             <p className="serif text-ink_2 text-lg leading-relaxed mt-6">
               {DEDICATION.message}
             </p>
-            <p className="serif text-ink_2 text-[15px] leading-relaxed mt-4 italic">
-              Woody never played in a band. Just late nights on the couch in the basement, picking out songs until everyone else in the room went quiet to listen. The Sheet Music section is for that — so he keeps playing.
-            </p>
           </div>
         </div>
 
