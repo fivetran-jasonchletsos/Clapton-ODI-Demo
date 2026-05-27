@@ -27,6 +27,37 @@ export default function DiscographyPage() {
           {ALBUMS.length} albums, sorted by decade. Each one links to a Spotify search so you can put it on while you read.
         </p>
 
+        {/* Albums per decade — instant overview */}
+        {(() => {
+          const decades = ["1960s","1970s","1980s","1990s","2000s","2010s","2020s"];
+          const counts = decades.map((d) => ALBUMS.filter((a) => a.era === d).length);
+          const max = Math.max(...counts, 1);
+          const decadeColors = ["#1f3a8a","#b07a2c","#7a1f2b","#0f7438","#a78bfa","#ff6b35","#4dd0ff"];
+          return (
+            <div className="mt-6 border border-paper_3/60 bg-paper_2/30 rounded p-4">
+              <div className="flex items-baseline justify-between mb-3">
+                <p className="mono text-[10px] uppercase tracking-[0.22em] text-denim">Records by decade</p>
+                <p className="mono text-[10px] uppercase tracking-[0.18em] text-ash">{ALBUMS.length} total</p>
+              </div>
+              <div className="flex items-end gap-2 h-32">
+                {decades.map((d, i) => {
+                  const h = (counts[i] / max) * 100;
+                  return (
+                    <div key={d} className="flex-1 flex flex-col items-center justify-end">
+                      <span className="display text-ink text-[18px] leading-none mb-1">{counts[i]}</span>
+                      <div
+                        className="w-full rounded-sm"
+                        style={{ height: `${h}%`, background: decadeColors[i], opacity: 0.85, minHeight: counts[i] === 0 ? 0 : 6 }}
+                      />
+                      <span className="mono text-[10px] uppercase tracking-[0.18em] text-slate mt-2">{d}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })()}
+
         <hr className="hr-rule" />
 
         {ERAS.map((era) => {
