@@ -8,15 +8,16 @@ import { useEffect, useState } from "react";
 const PRIMARY = [
   { href: "/",            label: "Home" },
   { href: "/dedication",  label: "For Woody" },
+  { href: "/mood",        label: "Mood" },
   { href: "/bands",       label: "Bands" },
   { href: "/discography", label: "Discography" },
   { href: "/guitars",     label: "Guitars" },
-  { href: "/crossroads",  label: "Crossroads" },
   { href: "/sheet-music", label: "Sheet Music" },
 ];
 
 // Secondary nav — context pages. Same visibility, smaller weight.
 const SECONDARY = [
+  { href: "/crossroads",     label: "Crossroads" },
   { href: "/related",        label: "The Web" },
   { href: "/collaborators",  label: "Collaborators" },
   { href: "/influences",     label: "Influences" },
