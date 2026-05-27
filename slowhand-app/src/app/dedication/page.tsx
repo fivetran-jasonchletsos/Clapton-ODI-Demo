@@ -1,6 +1,6 @@
 import TopNav from "@/components/TopNav";
 import Footer from "@/components/Footer";
-import { DEDICATION, WOODY_FACTS, WOODY_PHOTOS, WOODY_VIDEO } from "@/lib/dedication";
+import { DEDICATION, WOODY_PHOTOS, WOODY_VIDEO } from "@/lib/dedication";
 
 export const metadata = { title: "For Woody · Slowhand" };
 
@@ -42,17 +42,8 @@ export default function DedicationPage() {
               {DEDICATION.message}
             </p>
             <p className="serif text-ink_2 text-[15px] leading-relaxed mt-4 italic">
-              Bands he played in. Records he made. People he made them with. Tabs for the songs you're already learning. All of it, in one place — for you.
+              Woody never played in a band. Just late nights on the couch in the basement, picking out songs until everyone else in the room went quiet to listen. The Sheet Music section is for that — so he keeps playing.
             </p>
-
-            <div className="mt-6 border-l-2 border-whiskey/60 pl-4">
-              <p className="mono text-[10px] uppercase tracking-[0.22em] text-whiskey mb-2">A few Woody things</p>
-              <ul className="space-y-1">
-                {WOODY_FACTS.map((f) => (
-                  <li key={f} className="serif text-ink_2 text-[14.5px]">— {f}</li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
 
